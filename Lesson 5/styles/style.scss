@@ -1,0 +1,448 @@
+$pink: #F16D7F;
+$dark: #222222;
+$darkest: black;
+$light: #FBFBFB;
+$lightest: white;
+$wrap: 1140px;
+
+@mixin _list() {
+    padding: none;
+    margin: none;
+    list-style-type: none;
+}
+@mixin to_justify($content:space-between) {
+    display: flex;
+    justify-content: $content;
+    align-items: center;
+}
+@mixin basic_anim ($property:all, $duration:0.3s, $delay:0.1s) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-delay: $delay;
+}
+// Анимация - моя и с Animista
+@keyframes bigger-smaller {
+  0% {transform: scale(1);}
+  25% {transform: scale(1.1);}
+  50% {transform: scale(1.2);}
+  75% {transform: scale(1.1);}
+  100% {transform: scale(1);}
+  }
+@keyframes color-change {
+    0% {background-color: $pink;}
+    25% {background-color: #f16da4;}
+    50% {background-color: #ad2d92;}
+    75% {background-color: #f16da4;}
+    100% {background-color: $pink;}
+    }  
+@keyframes tracking-in-contract {
+    0% {
+      letter-spacing: 1em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      letter-spacing: normal;
+      opacity: 1;
+    }
+  }
+@keyframes shake-bottom {
+    0%,
+    100% {
+      transform: rotate(0deg) scale(1.2);
+      transform-origin: 50% 100%;
+    }
+    10% {
+      transform: rotate(2deg) scale(1.2);
+    }
+    20%,
+    40%,
+    60% {
+      transform: rotate(-4deg) scale(1.2);
+    }
+    30%,
+    50%,
+    70% {
+      transform: rotate(4deg) scale(1.2);
+    }
+    80% {
+      transform: rotate(-2deg) scale(1.2);
+    }
+    90% {
+      transform: rotate(2deg) scale(1.2);
+    }
+  }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    height: 100%;
+  }
+  body {
+    font: {
+        family: 'Lato', sans-serif;
+        weight: 400;
+        size: 14px;
+    }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper {
+    max-width: $wrap;
+    margin: 0 auto;
+  }
+  
+  /* специальные повторяющиеся стили */
+  .pinktext {
+    color: $pink;
+  }
+  .hidden {
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    position: absolute;
+    left: -99999px;
+  }
+  .center {
+    @include to_justify ($content:center)
+  }
+  
+  /* стили для контента - см. импорт*/
+  .header {
+    background-color: $dark;
+  }
+  @import "blocks/menu";
+  @import "blocks/promo";
+  
+  .main {
+    flex-grow: 1;
+  }
+  @import "blocks/offer";
+  @import "blocks/products";
+  
+  .footer {
+    background-color: $dark;
+  }
+  .feature_content {
+    @include to_justify();
+    padding: 104px 0;
+  }
+  .feature_card {
+    text-align: center;
+    width: $wrap/3 - 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    &:hover {
+    animation: bigger-smaller 0.5s 2 alternate;
+    }
+  }
+  .feature_heading {
+    font-size: 20px;
+    line-height: 24px;
+    color: $light;
+    margin-top: 20px;
+    margin-bottom: 16px;
+  }
+  .feature_text {
+    font: {
+        weight: 300;
+        size: 14px;
+        }
+    line-height: 17px;
+    text-align: center;
+    color: $light;
+  }
+  @import "blocks/feedback";
+  @import "blocks/copyright";
+  
+  /*стили Каталога*/
+  .inner_title {
+    background-color: #F8F3F4;
+    padding: 65px 0;
+  }
+  .inner_title_container {
+    @include to_justify();
+  }
+  .inner_title_heading {
+    font-size: 24px;
+    line-height: 29px;
+    animation: tracking-in-contract 1s;
+  }
+  @import "blocks/bread";
+  @import "blocks/filters";
+  .pagination {
+    @include _list();
+    display: flex;
+    gap: 23px;
+    }
+  .page-item:nth-child(8) {
+      margin: 0 -23px;
+  }
+  .page-link {
+    text-decoration: none;
+    font: {
+        weight: 300;
+        size: 16px;
+        }
+    line-height: 19px;
+    color: #C4C4C4;
+    display: inline-block;
+    &:hover {
+      transform: scale(1.5);
+      color: $dark;
+    }
+    }
+  .active {
+    color: #EF5B70;  
+  }
+  
+  /*стили Страницы Продукта*/
+.carousel {
+    @include to_justify();
+    background-color:#F7F7F7;
+    &_link {
+    background-color: rgba(42, 42, 42, 0.15);
+    padding: 10px;
+    }
+}
+  .svg_roller {
+  fill: $darkest;
+  @include basic_anim();
+  &:hover {
+    fill: $pink;
+  }
+}
+.product_maincontent {
+    border: 1px solid #EAEAEA;
+    padding-top: 60px;
+    padding-bottom: 74px;
+    margin-bottom: 120px;
+}
+.description {
+    margin-top: -60px;
+    @include to_justify();
+    flex-direction: column;
+    &_upperheading {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 17px;
+        padding-bottom: 12px;
+    }
+    &_heading {
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 22px;
+        color: #4D4D4D;
+        padding-top: 12px;
+        padding-bottom: 48px;
+    }
+    &_item {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        color: #5E5E5E;
+        padding: 0 294px;
+    }
+    &_price {
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 29px;
+        padding-top: 40px;
+        padding-bottom: 64px;
+    }
+}
+.pinkline {
+    border: none;
+    border-top: 1px solid $pink;
+    border-bottom: 1px solid $pink;
+    background-color: $pink;
+    height: 3px;
+    width: 63px;
+}
+.greyline {
+    border: none;
+    border-top: #EAEAEA 1px solid;
+    height: 1px;
+    width: 640px;
+    padding-bottom: 66px;
+}
+.product_filters {
+    @include to_justify($content:center);
+    align-items: baseline;
+    gap: 22px;
+    .filter_sort {
+        font-size: 14px;
+        line-height: 17px;
+        color: #6F6E6E;
+        padding-bottom: 48px;
+    }
+}
+.product_shop {
+    @include to_justify($content:center);
+}
+.product_shop_button {
+    @include to_justify();
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+    line-height: 19px;
+    background-color: $lightest;
+    border: 1px solid $pink;
+    color: $pink;
+    padding: 15px 57px;
+    text-align: center;
+    fill: $pink;
+    @include basic_anim();
+    &:hover {
+        background-color: $pink;
+        color: $lightest;
+        fill: $lightest;
+        transform: scale(1.1);
+        animation: shake-bottom 1s ease-in-out 0.2s infinite;
+        }
+    &_image {
+        margin-right: 20px;
+        }
+    }
+/*стили Корзины*/
+.cart {
+  @include to_justify();
+  align-items: flex-start;
+  padding-top: 98px;
+  padding-bottom: 128px;
+}
+.cart_list {
+  @include _list();
+  gap: 39px;
+}
+.cart_cards {
+  @include to_justify();
+  margin-bottom: 40px;
+  box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
+  &:last-child {
+    margin-bottom: 72px;
+  }
+&_img {
+  height: 306px;
+}
+&_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 120px;
+  padding: 28px 25px;
+}
+&_heading {
+  font-size: 24px;
+  line-height: 29px;
+  color: $dark;
+}
+&_text {
+  font-size: 22px;
+  line-height: 26px;
+  color: #575757;
+  padding: 50px 0px;
+  }
+  &_svg {
+    fill: #575757;
+    &:hover {
+      fill: $pink;
+    }
+    }
+}
+.cart_buttons {
+  @include to_justify();
+}
+.cart_button {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 17px;
+  color: $darkest;
+  border: 1px solid #A4A4A4;
+  padding:17px 40px;
+}
+
+.cart_shipping {
+  margin-left: 128px;
+}
+.cart_form {
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 16px;
+  color:#B1B1B1;
+  gap: 21px;
+  &_heading {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: $dark;
+  }
+  &_field {
+    font-family: inherit;
+    color:inherit;
+    background-color: $lightest;
+    border: 1px solid #A4A4A4;
+    padding: 17px;
+  }
+  &_button {
+    font-size: 14px;
+    line-height: 17px;
+    color: $darkest;
+    border: 1px solid #A4A4A4;
+    padding:17px 10px;
+    align-self: flex-start;
+  }
+}
+.cart_shipping_details {
+  margin-top: 57px;
+  padding: 43px;
+  background-color: #F5F3F3;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-end;
+  &_text {
+    text-align: right;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 13px;
+    color: $dark;
+    &:last-child {
+      font-size: 16px;
+      line-height: 19px;
+      padding-top: 12px;
+      padding-bottom: 24px;
+    }
+  }
+  & .pinktext {
+    font-weight: 900;
+  }
+  & .price {
+    padding-left: 25px;
+  }
+  & .greyline {
+    width: 275px;
+    padding-bottom: 20px;
+  }
+}
+.cart_checkout_button {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 19px;
+  color: $lightest;
+  border: 1px solid $pink;
+  background-color: $pink;
+  padding: 20px 40px;
+  @include basic_anim();
+  &:hover {
+    background-color: $lightest;
+    color: $pink;
+    animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both infinite;
+  }
+}
