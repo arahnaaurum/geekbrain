@@ -1,0 +1,47 @@
+.menu{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  @include to_justify();
+}
+.menu_start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.svg {
+  fill: $lightest;
+  transition-property: fill;
+  transition-duration: 0.5s;
+}
+.menu_icons {
+  display: block;
+  padding-right: 33px;
+  transition-duration: 0.2s;
+  &:hover {
+    transform: scale(1.25);
+  }
+  &:hover .svg {
+      fill: $pink;
+  }
+  &:last-of-type {
+      padding-right: 0px;
+      position: relative;
+    }
+}
+.menu_list {
+  @include _list();
+  @include to_justify();
+}
+.menu_shop {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $pink;
+  font-size: 12px;
+  line-height: 14px;
+  color: $lightest;
+  @include to_justify($content:center);
+}
