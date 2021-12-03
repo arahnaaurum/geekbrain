@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+"use strict";
+let a = 2;
+let x = 1 + (a *= 2);
+alert(a);
+alert(x);
+/*
+1. let a = 2; Переменной а присвоено значение 2
+2. (a *= 2) значение а умножено на 2 (2*2=4) и переприсвоено а. Можно записать как а = а*2.
+Выражение в скобках исчисляется первым, т.к. имеет приоритет.
+3. переменно х присваивается значение 1 + 4 = 5.
+4. Итого: а = 4, ч = 5
+*/
+</script>
+</body>
+</html>
