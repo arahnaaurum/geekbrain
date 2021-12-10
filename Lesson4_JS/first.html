@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+    
+        function analyseNumber(number) {
+            if (!Number.isInteger(number) || 0 > number || number > 999) {
+                console.log ("Вы задали недопустимое значение числа")
+                return null
+            }
+            return {
+                hundreds: Math.floor(number / 100),
+                tens: Math.floor((number % 100)/10),
+                units: (number % 10),
+                }
+        }
+        let a = new analyseNumber(123);
+        console.log(a.hundreds, a.tens, a.units)
+    </script>
+</body>
+</html>
