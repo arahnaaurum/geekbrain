@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict";
+        // es5    
+        function Post(author, date, text = "") {
+            this.author = author;
+            this.date = date;
+            this.text = text;
+        }
+        /* Написала функцию edit по-разному просто ради интереса. Можно так, с запросом:
+                Post.prototype.edit = function(){
+                    return this.text = prompt("Введите новый текст")
+                }*/
+        // Или так, с введенным новым значением:
+        Post.prototype.edit = function (newtext) {
+            return this.text = newtext;
+        }
+
+        function AttachedPost(author, date, text = "") {
+            Post.call(this, author, date, text = "");
+            this.highlighted = false;
+        }
+
+        AttachedPost.prototype = Object.create(Post.prototype);
+        AttachedPost.prototype.constructor = AttachedPost;
+
+        AttachedPost.prototype.makeTextHighlighted = function() {
+            return this.highlighted = true;
+        }
+
+        let b = new AttachedPost("aвтор", "20.12.2021",);
+        console.log(b);
+        b.edit("АБВГДЕЁЖЗ");
+        console.log(b.text);
+        b.makeTextHighlighted();
+        console.log(b.highlighted);
+
+    </script>
+</body>
+
+</html>

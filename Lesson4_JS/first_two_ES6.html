@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict";
+        // es6
+        class Post {
+            constructor(author, date, text = "") {
+                this.author = author;
+                this.date = date;
+                this.text = text;
+            }
+            edit(newtext) {
+                return this.text = newtext
+            }
+        }
+        class AttachedPost extends Post {
+            constructor(author, date, text = "") {
+                super(author, date, text);
+                this.highlighted = false;
+            }
+            makeTextHighlighted() {
+                return this.highlighted = true;
+            }
+        }
+
+        let b = new AttachedPost("aвтор", "20.12.2021",);
+        console.log(b);
+        b.edit("АБВГДЕЁЖЗ");
+        console.log(b.text);
+        b.makeTextHighlighted();
+        console.log(b.highlighted);
+
+    </script>
+</body>
+
+</html>
